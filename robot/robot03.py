@@ -48,8 +48,8 @@ def get_pic(index_url):
         print('爬取图片：\t' + index_url)
         pic_html = html.fromstring(requests.get(index_url).content)
         pic = pic_html.xpath('//div[@class="main-image"]/p/a/img/@src')
-        pic_str = re.split('（|）', pic_html.xpath('//h2[@class="main-title"]')[0].text_content())
-        pic_dir = base_path + re.sub(':|<|>|\?|\||"|\'|,|\*', '', pic_str[0])
+        pic_str = re.split('[（）]', pic_html.xpath('//h2[@class="main-title"]')[0].text_content())
+        pic_dir = base_path + re.sub('[:<>?|"\',*]', '', pic_str[0])
         if not os.path.exists(pic_dir):
             os.makedirs(pic_dir)
         download(pic_dir + '\\' + (pic_str[1] if pic_str.__len__() > 1 else '1'), pic[0])
