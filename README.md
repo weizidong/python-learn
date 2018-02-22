@@ -21,3 +21,7 @@ python -m django --version
 创建一个能够登录管理后台站点的用户：
     python manage.py createsuperuser
 ```
+#### python 转成 exe文件
+```
+pyinstaller -F MarkovChainGenerator.py
+```
